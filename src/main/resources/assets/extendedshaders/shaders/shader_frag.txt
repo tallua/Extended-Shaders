@@ -90,11 +90,11 @@ vec4 doTexEnv(vec4 frag, vec4 texs[8], vec4 prev, int ind)
         else if (OGL_COMBINE_RGB[ind] == OGL_ADD_SIGNED) col.rgb = arg0.rgb + arg1.rgb - 0.5;
         else if (OGL_COMBINE_RGB[ind] == OGL_INTERPOLATE) col.rgb = arg0.rgb * arg2.rgb + arg1.rgb * (1.0 - arg2.rgb);
         else if (OGL_COMBINE_RGB[ind] == OGL_SUBTRACT) col.rgb = arg0.rgb - arg1.rgb;
-        else if (OGL_COMBINE_RGB[ind] == OGL_DOT3_RGB) col.rgb = 4.0 * dot(arg0.rgb - 0.5, arg1.rgb - 0.5);
+        else if (OGL_COMBINE_RGB[ind] == OGL_DOT3_RGB) col.rgb = 4.0 * vec3(dot(arg0.rgb - 0.5, arg1.rgb - 0.5));
         else if (OGL_COMBINE_RGB[ind] == OGL_DOT3_RGBA)
         {
             col.a = 4.0 * dot(arg0.rgb - 0.5, arg1.rgb - 0.5);
-            col.rgb = col.a;
+            col.rgb = vec3(col.a);
         }
         if (OGL_COMBINE_ALPHA[ind] == OGL_REPLACE) col.a = arg0.a;
         else if (OGL_COMBINE_ALPHA[ind] == OGL_MODULATE) col.a = arg0.a * arg1.a;
